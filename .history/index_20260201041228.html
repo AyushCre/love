@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do you love me?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #f6b1c3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #ffdbe6;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        width: 280px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        position: relative;
+    }
+
+    img {
+        width: 120px;
+        margin-bottom: 10px;
+    }
+
+    h2 { margin: 10px 0; }
+    p { font-size: 14px; }
+
+    .btns {
+        margin-top: 15px;
+        position: relative;
+        height: 50px;
+    }
+
+    button {
+        border: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        position: absolute;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+        left: 60px;
+    }
+
+    .no {
+        background: white;
+        left: 140px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img id="img" src="https://i.imgur.com/9yG6xwC.png">
+    <h2 id="title">Do you love me? 🥺</h2>
+    <p id="text">Sach sach batana 😭</p>
+
+    <div class="btns">
+        <button class="yes" onclick="yesClicked()">Yes</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+let noClicks = 0;
+const noBtn = document.getElementById("noBtn");
+
+const messages = [
+    "Please think again! 🙄",
+    "Ek aur baar soch lo 😠",
+    "Beautiful pls maan jao 😭"
+];
+
+noBtn.addEventListener("click", () => {
+    if (noClicks < 3) {
+        document.getElementById("title").innerText = messages[noClicks];
+        noClicks++;
+    }
+});
+
+// Cursor jaise hi No ke paas aaye → bhaag jaaye 😈
+noBtn.addEventListener("mouseenter", () => {
+    if (noClicks >= 3) {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+        noBtn.style.position = "fixed";
+    }
+});
+
+function yesClicked() {
+    document.querySelector(".card").innerHTML = `
+        <img src="https://i.imgur.com/oM6Fq4K.png">
+        <h2>I knew it 😍</h2>
+        <p>I know you love me a lot ❤️</p>
+    `;
+}
+</script>
+
+</body>
+</html>

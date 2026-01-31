@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do you love me?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #f6b1c3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #ffe3ec;
+        padding: 25px;
+        border-radius: 25px;
+        text-align: center;
+        width: 300px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+
+    h2 { margin: 10px 0; }
+    p { font-size: 14px; }
+
+    .btns {
+        position: relative;
+        height: 50px;
+        margin-top: 10px;
+    }
+
+    button {
+        border: none;
+        padding: 8px 22px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        position: absolute;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+        left: 60px;
+    }
+
+    .no {
+        background: white;
+        left: 160px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <img id="img" src="https://i.imgur.com/9yG6xwC.png">
+    <h2 id="title">Do you love me? 🥺</h2>
+    <p id="text">sach sach batana 😭</p>
+
+    <div class="btns">
+        <button class="yes" onclick="yesClicked()">Yes</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+let noCount = 0;
+const noBtn = document.getElementById("noBtn");
+
+const scenes = [
+    {
+        title: "Please think again! 🙄",
+        text: "aisa mat bolo please maan jao 😢",
+        img: "https://i.imgur.com/FY7zYpS.png"   // cute begging
+    },
+    {
+        title: "Ek aur baar soch lo 😠",
+        text: "main tumhe humesha khush rakhunga 🥺",
+        img: "https://i.imgur.com/4AiXzf8.png"   // emotional convince
+    },
+    {
+        title: "Beautiful pls maan jao 😭",
+        text: "dekho kitna pyaar se mana raha hoon 💔",
+        img: "https://i.imgur.com/9QZ6M8n.png"   // crying cute
+    }
+];
+
+noBtn.addEventListener("click", () => {
+    if (noCount < scenes.length) {
+        title.innerText = scenes[noCount].title;
+        text.innerText = scenes[noCount].text;
+        img.src = scenes[noCount].img;
+        noCount++;
+    }
+});
+
+// Last stage: No button bhaagne lage 😈
+noBtn.addEventListener("mouseenter", () => {
+    if (noCount >= 2) {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 80);
+        noBtn.style.position = "fixed";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+function yesClicked() {
+    card.innerHTML = `
+        <img src="https://i.imgur.com/oM6Fq4K.png">
+        <h2>I knew it 😍</h2>
+        <p>I know you love me a lot ❤️</p>
+    `;
+}
+</script>
+
+</body>
+</html>

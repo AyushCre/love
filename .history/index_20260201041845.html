@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do you love me?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #f6b1c3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #ffdbe6;
+        padding: 25px;
+        border-radius: 20px;
+        text-align: center;
+        width: 300px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    img {
+        width: 140px;
+        height: 140px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+
+    h2 { margin: 10px 0; }
+    p { font-size: 14px; }
+
+    .btns {
+        margin-top: 15px;
+        position: relative;
+        height: 50px;
+    }
+
+    button {
+        border: none;
+        padding: 8px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        position: absolute;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+        left: 60px;
+    }
+
+    .no {
+        background: white;
+        left: 150px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <img id="gif" src="https://media.tenor.com/2roX3uxz_68AAAAi/cute-begging.gif">
+    <h2 id="title">Do you love me? 🥺</h2>
+    <p id="text">sach sach batana 😭</p>
+
+    <div class="btns">
+        <button class="yes" onclick="yesClicked()">Yes</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+let noCount = 0;
+const noBtn = document.getElementById("noBtn");
+
+const states = [
+    {
+        title: "Please think again! 🙄",
+        text: "aisa mat bolo please maan jao 😢",
+        gif: "https://media.tenor.com/5Y9KQqjXj5gAAAAi/please.gif"
+    },
+    {
+        title: "Ek aur baar soch lo 😠",
+        text: "main tumhe humesha khush rakhunga 🥺",
+        gif: "https://media.tenor.com/1x9t0JHk9i0AAAAi/begging-cute.gif"
+    },
+    {
+        title: "Beautiful pls maan jao 😭",
+        text: "kitna bhaav khaogi 💔",
+        gif: "https://media.tenor.com/0AVbKGY_MxMAAAAi/crying-cute.gif"
+    }
+];
+
+noBtn.addEventListener("click", () => {
+    if (noCount < states.length) {
+        document.getElementById("title").innerText = states[noCount].title;
+        document.getElementById("text").innerText = states[noCount].text;
+        document.getElementById("gif").src = states[noCount].gif;
+        noCount++;
+    }
+});
+
+// No button bhaagta hua
+noBtn.addEventListener("mouseenter", () => {
+    if (noCount >= 2) {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        noBtn.style.position = "fixed";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+});
+
+function yesClicked() {
+    document.getElementById("card").innerHTML = `
+        <img src="https://media.tenor.com/YwS9p4zXJ5kAAAAi/love-you.gif">
+        <h2>I knew it 😍</h2>
+        <p>I know you love me a lot ❤️</p>
+    `;
+}
+</script>
+
+</body>
+</html>
